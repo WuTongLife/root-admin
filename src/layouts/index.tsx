@@ -20,6 +20,16 @@ const BasicLayout: FC = ({ children }) => {
         collapsed={false}
         trigger={<Avatar size={48} icon={<UserOutlined />} />}
       >
+        <div
+          style={{
+            height: 64,
+            color: '#fff',
+            textAlign: 'center',
+            lineHeight: '64px',
+          }}
+        >
+          Logo
+        </div>
         <Menu
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
