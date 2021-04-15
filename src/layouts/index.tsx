@@ -1,51 +1,66 @@
-import React, { FC } from 'react';
-import { Layout, Menu } from 'antd';
-import {
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import React, { FC, useState } from 'react';
+import { Layout, Menu, Avatar } from 'antd';
+import { UserOutlined, BarChartOutlined, SettingOutlined, GlobalOutlined } from '@ant-design/icons';
 import Styles from './index.less';
-import Avatar from 'antd/lib/avatar/avatar';
+import IconFont, { IconTypeEnum } from '@/components/IconFont';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
-const { Sider, Content } = Layout;
+const { Sider, Content, Header } = Layout;
+declare type mode = 'inline' | 'horizontal';
 
 const BasicLayout: FC = ({ children }) => {
+  const { pathname } = useLocation();
+  const [menuMode, setMenuMode] = useState<mode>('inline');
+  const selectKey = pathname.split('/')[1];
+  const renderMenu = () => {
+    return (
+      <Menu selectedKeys={[selectKey]} mode={menuMode} theme="dark">
+        <Menu.Item key="blog" title="博客" icon={<IconFont type={IconTypeEnum.博客} />}>
+          <Link to="/blog">博客</Link>
+        </Menu.Item>
+        <Menu.Item key="progress" title="小程序" icon={<IconFont type={IconTypeEnum.小程序} />}>
+          <Link to="/progress">小程序</Link>
+        </Menu.Item>
+        <Menu.Item key="datav" title="图表" icon={<BarChartOutlined />}>
+          <Link to="/datav">大屏</Link>
+        </Menu.Item>
+        <Menu.Item key="setting" title="设置" icon={<SettingOutlined />}>
+          <Link to="/setting"> 设置</Link>
+        </Menu.Item>
+      </Menu>
+    );
+  };
   return (
     <Layout className={Styles.layout}>
-      <Sider
-        width={64}
-        collapsible
-        collapsed={false}
-        trigger={<Avatar size={48} icon={<UserOutlined />} />}
-      >
-        <div
-          style={{
-            height: 64,
-            color: '#fff',
-            textAlign: 'center',
-            lineHeight: '64px',
-          }}
+      {menuMode === 'inline' ? (
+        <Sider
+          className={Styles.slider}
+          width={64}
+          collapsible
+          collapsed={false}
+          trigger={<Avatar size={48} icon={<UserOutlined />} />}
         >
-          Logo
-        </div>
-        <Menu
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          mode="inline"
-          theme="dark"
-        >
-          <Menu.Item
-            key="1"
-            title="博客"
-            icon={<PieChartOutlined />}
-          ></Menu.Item>
-          <Menu.Item key="2" title="小程序" icon={<DesktopOutlined />} />
-          <Menu.Item key="3" title="图表" icon={<ContainerOutlined />} />
-        </Menu>
-      </Sider>
-      <Content>{children}</Content>
+          <div
+            style={{
+              height: 48,
+              color: '#3977b1',
+              textAlign: 'center',
+              lineHeight: '48px',
+              fontSize: '24px',
+            }}
+          >
+            <GlobalOutlined />
+          </div>
+          {renderMenu()}
+        </Sider>
+      ) : (
+        <Header style={{ height: 48 }}>{renderMenu()}</Header>
+      )}
+
+      <Content>
+        <div>{children}</div>
+      </Content>
     </Layout>
   );
 };

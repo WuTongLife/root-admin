@@ -1,8 +1,28 @@
 .layout {
-  min-height: 100vh;
-  :global {
-    .ant-layout-sider-trigger {
-      background-color: unset;
+  min-height: 100vh !important;
+  .slider {
+    z-index: 10000;
+    :global {
+      .ant-layout-sider-trigger {
+        background-color: unset;
+        margin: 8px 0px;
+      }
+      .ant-menu-item {
+        padding: 0px 0px 8px 0px !important;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        line-height: unset;
+        height: 56px;
+        .ant-menu-item-icon {
+          font-size: 20px;
+          margin-right: 0px;
+        }
+      }
+      .ant-menu-item-selected {
+        background-color: #3977b1 !important;
+      }
     }
   }
 }
