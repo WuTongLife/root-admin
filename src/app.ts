@@ -1,5 +1,4 @@
 import { message, notification } from 'antd';
-import { useState } from 'react';
 import { history, RequestConfig } from 'umi';
 import type { ResponseError } from 'umi-request';
 import { allMenus } from './services/menu';
@@ -20,7 +19,7 @@ export async function getInitialState(): Promise<{
       const res = await queryCurrent();
       return res.data;
     } catch (error) {
-      history.push('/user/login');
+      history.push('/login');
     }
     return undefined;
   };
@@ -31,34 +30,49 @@ export async function getInitialState(): Promise<{
   };
 
   // 如果是登录页面，不执行
-  // if (history.location.pathname !== '/user/login') {
-  //   const [currentUser, menuData] = await Promise.all<API.CurrentUser, any[]>([
-  //     handlePromise(queryCurrent()),
-  //     handlePromise(getPermissions()),
-  //   ]);
-  //   // 生成一个Promise对象的数组
-  //   return {
-  //     fetchUserInfo,
-  //     fetchPermissions,
-  //     currentUser,
-  //     menuData,
-  //     settings: {},
-  //   };
-  // }
+  if (history.location.pathname !== '/login') {
+    const [currentUser, menuData] = await Promise.all<API.CurrentUser, any[]>([fetchUserInfo(), fetchPermissions()]);
+    // 生成一个Promise对象的数组
+    return {
+      fetchUserInfo,
+      fetchPermissions,
+      currentUser,
+      menuData,
+    };
+  }
+
   return {
     fetchUserInfo,
     fetchPermissions,
   };
 }
 
-export function useQiankunStateForSlave() {
-  const [currentUser, setCurrentUser] = useState({});
-  return {
-    currentUser,
-    setCurrentUser,
-    from: 'qiankun',
-  };
-}
+// export function useQiankunStateForSlave() {
+//   // console.log(_menuData, _currentUser);
+//   const [userPermissions, setUserPermissions] = useState({ currentUser: _currentUser, menuData: _menuData });
+//   const fetchUserInfo = async () => {
+//     try {
+//       const res = await queryCurrent();
+//       return res.data;
+//     } catch (error) {
+//       history.push('/login');
+//     }
+//     return undefined;
+//   };
+
+//   const fetchPermissions = async () => {
+//     const res = await allMenus();
+//     return res.data || [];
+//   };
+
+//   return {
+//     ...userPermissions,
+//     setUserPermissions,
+//     fetchUserInfo,
+//     fetchPermissions,
+//     from: 'qiankun',
+//   };
+// }
 
 const codeMessage: { [key: number]: string } = {
   200: '服务器成功返回请求的数据。',
@@ -128,7 +142,7 @@ export const request: RequestConfig = {
       if (res.statusCode === 401) {
         message.error(res.message);
         localStorage.removeItem('token');
-        history.push('/user/login');
+        history.push('/login');
       }
       return response;
     },

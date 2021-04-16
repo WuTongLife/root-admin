@@ -27,11 +27,16 @@ export default defineConfig({
         {
           path: '/setting',
           microApp: 'setting-admin',
+          microAppProps: {
+            autoSetLoading: true,
+            className: 'myContainer',
+            wrapperClassName: 'myWrapper',
+          },
         },
-        // {
-        //   path: '/datav',
-        //   microApp: 'dataV-admin',
-        // },
+        {
+          path: '/datav',
+          microApp: 'dataV-admin',
+        },
         {
           path: '/',
           component: './index',
@@ -54,8 +59,8 @@ export default defineConfig({
         //   entry: '//localhost:8002', // html entry
         // },
         // {
-        //   name: 'dataV-admin', // 小程序后台
-        //   entry: '//localhost:8003', // html entry
+        //   name: 'dataV-admin', // 数据大屏
+        //   entry: '//localhost:8009', // html entry
         // },
         {
           name: 'setting-admin', // 小程序后台

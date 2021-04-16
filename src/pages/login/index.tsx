@@ -21,19 +21,19 @@ const goto = () => {
 const Login: React.FC = () => {
   const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
-  const { initialState, setInitialState } = useModel('@@initialState');
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
-    const menuData = await initialState?.fetchPermissions?.();
-    if (userInfo) {
-      // setCurrentUser(userInfo);
-      setInitialState({
-        ...initialState,
-        currentUser: userInfo,
-        menuData,
-      });
-    }
-  };
+  // const { initialState, setInitialState } = useModel('@@initialState');
+  // const fetchUserInfo = async () => {
+  //   const userInfo = await initialState?.fetchUserInfo?.();
+  //   const menuData = await initialState?.fetchPermissions?.();
+  //   if (userInfo) {
+  //     // setCurrentUser(userInfo);
+  //     setInitialState({
+  //       ...initialState,
+  //       currentUser: userInfo,
+  //       menuData,
+  //     });
+  //   }
+  // };
 
   const handleSubmit = async (values: LoginParamsType) => {
     setSubmitting(true);
@@ -43,7 +43,7 @@ const Login: React.FC = () => {
       if (res.statusCode === 200) {
         message.success('登录成功！');
         localStorage.setItem('token', res.data?.token || '');
-        await fetchUserInfo();
+        // await fetchUserInfo();
         goto();
         return;
       }
