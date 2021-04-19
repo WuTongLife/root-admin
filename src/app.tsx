@@ -1,11 +1,16 @@
 import { message, notification } from 'antd';
 import { history, RequestConfig } from 'umi';
 import type { ResponseError } from 'umi-request';
+import Styles from './global.less';
 import { allMenus } from './services/menu';
 import { queryCurrent } from './services/user';
 
 message.config({
   maxCount: 1,
+  prefixCls: 'root',
+});
+notification.config({
+  prefixCls: 'root',
 });
 
 export async function getInitialState(): Promise<{

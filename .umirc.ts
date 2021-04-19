@@ -8,43 +8,58 @@ export default defineConfig({
   history: { type: 'hash' },
   routes: [
     {
-      path: '/login',
-      exact: true,
-      component: '@/pages/login/index',
-    },
-    {
       path: '/',
-      component: '@/layouts/index',
+      component: '@/layouts/ConfigLayout',
       routes: [
-        // {
-        //   path: '/blog',
-        //   microApp: 'blog-admin',
-        // },
-        // {
-        //   path: '/progress',
-        //   microApp: 'progress-admin',
-        // },
         {
-          path: '/setting',
-          microApp: 'setting-admin',
-          microAppProps: {
-            autoSetLoading: true,
-            className: 'myContainer',
-            wrapperClassName: 'myWrapper',
-          },
-        },
-        {
-          path: '/datav',
-          microApp: 'dataV-admin',
+          path: '/login',
+          exact: true,
+          component: '@/pages/login/index',
         },
         {
           path: '/',
-          component: './index',
-          redirect: '/setting',
+          component: '@/layouts/index',
+          routes: [
+            // {
+            //   path: '/blog',
+            //   microApp: 'blog-admin',
+            // },
+            // {
+            //   path: '/progress',
+            //   microApp: 'progress-admin',
+            // },
+            {
+              path: '/setting',
+              microApp: 'setting-admin',
+              microAppProps: {
+                autoSetLoading: true,
+                className: 'myContainer',
+                wrapperClassName: 'myWrapper',
+              },
+            },
+            {
+              path: '/datav',
+              microApp: 'dataV-admin',
+            },
+            {
+              path: '/',
+              component: './index',
+              // redirect: '/setting',
+            },
+          ],
         },
       ],
     },
   ],
+  locale: {
+    antd: false,
+  },
+  antd: {
+    compact: true,
+  },
+  // dynamicImport: {
+  //   loading: '@/components/Loading/index',
+  // },
   fastRefresh: {},
   qiankun: {
     master: {
@@ -71,7 +86,8 @@ export default defineConfig({
     },
   },
   theme: {
-    '@primary-color': '#1a867d',
+    '@ant-prefix': 'root',
+    '@primary-color': '#3977b1',
   },
   proxy: {
     '/api': {

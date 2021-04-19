@@ -1,14 +1,15 @@
+@prefixCls: root;
 .myContainer {
-  background-color: aqua;
-  .ant-spin {
-  }
 }
 
 .myWrapper {
-  width: 100%;
-  height: 100vh;
-  .ant-spin {
+  .@{prefixCls}-spin {
     text-align: center;
-    margin: 0 auto;
+    padding-top: 10%;
+  }
+}
+
+.layout {
+  :global {
   }
 }

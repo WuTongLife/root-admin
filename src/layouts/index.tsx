@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { Layout, Menu, Avatar } from 'antd';
+import { Layout, Menu, Avatar, Space, ConfigProvider } from 'antd';
 import { UserOutlined, BarChartOutlined, SettingOutlined, GlobalOutlined } from '@ant-design/icons';
 import Styles from './index.less';
 import IconFont, { IconTypeEnum } from '@/components/IconFont';
@@ -13,29 +13,12 @@ const BasicLayout: FC = ({ children }) => {
   const { pathname } = useLocation();
   const [menuMode, setMenuMode] = useState<mode>('horizontal');
   const selectKey = pathname.split('/')[1];
-  const renderMenu = () => {
-    return (
-      <Menu selectedKeys={[selectKey]} mode={menuMode} theme="dark">
-        <Menu.Item key="blog" title="博客管理" icon={<IconFont type={IconTypeEnum.博客} />}>
-          <Link to="/blog">博客管理</Link>
-        </Menu.Item>
-        <Menu.Item key="progress" title="小程序管理" icon={<IconFont type={IconTypeEnum.小程序} />}>
-          <Link to="/progress">小程序管理</Link>
-        </Menu.Item>
-        <Menu.Item key="datav" title="数据大屏" icon={<BarChartOutlined />}>
-          <Link to="/datav">数据大屏</Link>
-        </Menu.Item>
-        <Menu.Item key="setting" title="系统管理" icon={<SettingOutlined />}>
-          <Link to="/setting">系统管理</Link>
-        </Menu.Item>
-      </Menu>
-    );
-  };
   return (
     <Layout className={Styles.layout}>
       <div className={Styles.header}>
         <Header>
-          <div
+          <Space
+            size={12}
             style={{
               height: 48,
               color: '#3977b1',
@@ -44,10 +27,12 @@ const BasicLayout: FC = ({ children }) => {
               fontSize: '24px',
               float: 'left',
               width: 208,
+              justifyContent: 'center',
             }}
           >
             <GlobalOutlined />
-          </div>
+            <span>Root Admin</span>
+          </Space>
           <Menu selectedKeys={[selectKey]} mode={menuMode} theme="dark">
             <Menu.Item key="blog" title="博客管理" icon={<IconFont type={IconTypeEnum.博客} />}>
               <Link to="/blog">博客管理</Link>

@@ -1,7 +1,7 @@
 @import '~antd/es/style/themes/default.less';
 
 @padding-size: 32px;
-@button-color: #1a867d;
+@button-color: @primary-color;
 
 .container {
   display: flex;
@@ -28,7 +28,7 @@
 
 @media (min-width: @screen-md-min) {
   .container {
-    background: radial-gradient(at center, #28c7ba, #1a867d);
+    background: radial-gradient(at center, rgb(58, 121, 158), @primary-color);
   }
 
   .content {

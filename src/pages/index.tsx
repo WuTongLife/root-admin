@@ -1,3 +1,5 @@
+import Loading from '@/components/Loading';
+
 export default function IndexPage() {
-  return <div></div>;
+  return <Loading isLoading />;
 }
