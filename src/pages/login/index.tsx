@@ -18,7 +18,8 @@ const goto = () => {
   }, 10);
 };
 
-const Login: React.FC = () => {
+const Login: React.FC = (props: any) => {
+  console.log(props);
   const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
   // const { initialState, setInitialState } = useModel('@@initialState');

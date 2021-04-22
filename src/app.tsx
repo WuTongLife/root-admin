@@ -4,13 +4,16 @@ import type { ResponseError } from 'umi-request';
 import Styles from './global.less';
 import { allMenus } from './services/menu';
 import { queryCurrent } from './services/user';
+import 'antd/lib/message/style/index.css';
+import 'antd/lib/notification/style/index.css';
 
 message.config({
   maxCount: 1,
-  prefixCls: 'root',
+  top: 64,
 });
+
 notification.config({
-  prefixCls: 'root',
+  top: 64,
 });
 
 export async function getInitialState(): Promise<{

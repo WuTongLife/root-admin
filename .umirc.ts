@@ -1,4 +1,4 @@
-import { defineConfig } from 'umi';
+import { defineConfig, history } from 'umi';
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -35,6 +35,7 @@ export default defineConfig({
                 autoSetLoading: true,
                 className: 'myContainer',
                 wrapperClassName: 'myWrapper',
+                rootHistory: history,
               },
             },
             {
@@ -80,7 +81,7 @@ export default defineConfig({
         {
           name: 'setting-admin', // 小程序后台
           entry: '//localhost:8010', // html entry
-          props: { from: 'qiankun' },
+          props: { from: 'qiankun', rootHistory: history },
         },
       ],
     },
