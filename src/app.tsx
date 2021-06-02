@@ -1,7 +1,6 @@
 import { message, notification } from 'antd';
 import { history, RequestConfig } from 'umi';
 import type { ResponseError } from 'umi-request';
-import Styles from './global.less';
 import { allMenus } from './services/menu';
 import { queryCurrent } from './services/user';
 import 'antd/lib/message/style/index.css';
@@ -38,15 +37,17 @@ export async function getInitialState(): Promise<{
   };
 
   // 如果是登录页面，不执行
-  if (history.location.pathname !== '/login') {
-    const [currentUser, menuData] = await Promise.all<API.CurrentUser, any[]>([fetchUserInfo(), fetchPermissions()]);
-    // 生成一个Promise对象的数组
-    return {
-      fetchUserInfo,
-      fetchPermissions,
-      currentUser,
-      menuData,
-    };
+  if (localStorage.getItem('token')) {
+    if (history.location.pathname !== '/login') {
+      const [currentUser, menuData] = await Promise.all<API.CurrentUser, any[]>([fetchUserInfo(), fetchPermissions()]);
+      // 生成一个Promise对象的数组
+      return {
+        fetchUserInfo,
+        fetchPermissions,
+        currentUser,
+        menuData,
+      };
+    }
   }
 
   return {
