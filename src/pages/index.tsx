@@ -1,5 +1,9 @@
-import Loading from '@/components/Loading';
+import styles from './index.less';
 
 export default function IndexPage() {
-  return <Loading isLoading />;
+  return (
+    <div>
+      <h1 className={styles.title}>Page index</h1>
+    </div>
+  );
 }

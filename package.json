@@ -1,9 +1,10 @@
 {
   "private": true,
-  "name": "root-admin",
+  "name": "qiankun-root",
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
+    "product": "cross-env UMI_ENV=product umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -21,21 +22,21 @@
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^4.6.2",
     "@ant-design/pro-layout": "^6.5.0",
-    "@umijs/preset-react": "1.x",
-    "antd": "^4.15.1",
-    "umi": "^3.4.8"
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.8"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@umijs/plugin-qiankun": "^2.24.1",
-    "@umijs/test": "^3.4.8",
+    "@umijs/plugin-qiankun": "^2.26.0",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.8",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "cross-env": "^7.0.3",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
-    "react": "17.x",
-    "react-dom": "17.x",
     "typescript": "^4.1.2",
     "yorkie": "^2.0.0"
   }
