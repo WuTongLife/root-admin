@@ -4,11 +4,22 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  history: { type: 'hash' },
   hash: true,
   fastRefresh: {},
-  dynamicImport: {}, // 动态加载
+  dynamicImport: {
+    loading: '@/components/PageLoading',
+  }, // 动态加载
   exportStatic: {}, // 预渲染
+  theme: {
+    '@ant-prefix': 'root-antd',
+  },
   routes: [
+    {
+      path: '/login',
+      component: '@/pages/login',
+      exact: true,
+    },
     {
       path: '/',
       component: '@/layouts/index',

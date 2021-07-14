@@ -1,5 +1,10 @@
+import React from 'react';
 import { RequestConfig } from 'umi';
-import { fetchApps } from './services/common';
+import { ConfigProvider } from 'antd';
+
+export function rootContainer(container: any) {
+  return React.createElement(ConfigProvider, { prefixCls: 'root-antd' }, container);
+}
 
 export const request: RequestConfig = {
   errorConfig: {
